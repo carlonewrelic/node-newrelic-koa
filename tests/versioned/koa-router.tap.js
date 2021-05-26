@@ -20,7 +20,7 @@ tap.test('koa-router instrumentation', (t) => {
 
   const paramMiddlewareName = 'Nodejs/Middleware/Koa/middleware//:first'
 
-  function testSetup(done) {
+  function testSetup() {
     helper = utils.TestAgent.makeInstrumented()
     helper.registerInstrumentation({
       moduleName: 'koa',
@@ -36,10 +36,9 @@ tap.test('koa-router instrumentation', (t) => {
     app = new Koa()
     Router = require('koa-router')
     router = new Router()
-    done()
   }
 
-  function tearDown(done) {
+  function tearDown() {
     server.close(() => {
       app = null
       router = null
@@ -47,14 +46,12 @@ tap.test('koa-router instrumentation', (t) => {
       helper && helper.unload()
 
       server = null
-
-      done()
     })
   }
 
   t.test('with single router', (t) => {
-    t.beforeEach((done) => testSetup(done))
-    t.afterEach((done) => tearDown(done))
+    t.beforeEach(() => testSetup())
+    t.afterEach(() => tearDown())
     t.autoend()
 
     t.test('should name and produce segments for matched path', (t) => {
@@ -479,8 +476,8 @@ tap.test('koa-router instrumentation', (t) => {
   })
 
   t.test('using multipler routers', (t) => {
-    t.beforeEach((done) => testSetup(done))
-    t.afterEach((done) => tearDown(done))
+    t.beforeEach(() => testSetup())
+    t.afterEach(() => tearDown())
     t.autoend()
 
     t.test('should name transaction after last route for identical matches', (t) => {
@@ -575,8 +572,8 @@ tap.test('koa-router instrumentation', (t) => {
   })
 
   t.test('using nested or prefixed routers', (t) => {
-    t.beforeEach((done) => testSetup(done))
-    t.afterEach((done) => tearDown(done))
+    t.beforeEach(() => testSetup())
+    t.afterEach(() => tearDown())
     t.autoend()
 
     t.test('should name after most last matched path', (t) => {
@@ -696,8 +693,8 @@ tap.test('koa-router instrumentation', (t) => {
     t.autoend()
 
     t.test('with throw: true', (t) => {
-      t.beforeEach((done) => testSetup(done))
-      t.afterEach((done) => tearDown(done))
+      t.beforeEach(() => testSetup())
+      t.afterEach(() => tearDown())
       t.autoend()
 
       t.test('should name transaction after status `method now allowed` message', (t) => {
@@ -851,8 +848,8 @@ tap.test('koa-router instrumentation', (t) => {
     })
 
     t.test('with throw: false', (t) => {
-      t.beforeEach((done) => testSetup(done))
-      t.afterEach((done) => tearDown(done))
+      t.beforeEach(() => testSetup())
+      t.afterEach(() => tearDown())
       t.autoend()
 
       t.test('should name transaction after status `method now allowed` message', (t) => {
@@ -1044,7 +1041,7 @@ tap.test('@koa/router instrumentation', (t) => {
 
   const paramMiddlewareName = 'Nodejs/Middleware/Koa/middleware//:first'
 
-  function testSetup(done) {
+  function testSetup() {
     helper = utils.TestAgent.makeInstrumented()
     helper.registerInstrumentation({
       moduleName: 'koa',
@@ -1060,10 +1057,9 @@ tap.test('@koa/router instrumentation', (t) => {
     app = new Koa()
     Router = require('@koa/router')
     router = new Router()
-    done()
   }
 
-  function tearDown(done) {
+  function tearDown() {
     server.close(() => {
       app = null
       router = null
@@ -1072,13 +1068,12 @@ tap.test('@koa/router instrumentation', (t) => {
 
       server = null
 
-      done()
     })
   }
 
   t.test('with single router', (t) => {
-    t.beforeEach((done) => testSetup(done))
-    t.afterEach((done) => tearDown(done))
+    t.beforeEach(() => testSetup())
+    t.afterEach(() => tearDown())
     t.autoend()
 
     t.test('should name and produce segments for matched path', (t) => {
@@ -1490,8 +1485,8 @@ tap.test('@koa/router instrumentation', (t) => {
   })
 
   t.test('using multipler routers', (t) => {
-    t.beforeEach((done) => testSetup(done))
-    t.afterEach((done) => tearDown(done))
+    t.beforeEach(() => testSetup())
+    t.afterEach(() => tearDown())
     t.autoend()
 
     t.test('should name transaction after last route for identical matches', (t) => {
@@ -1586,8 +1581,8 @@ tap.test('@koa/router instrumentation', (t) => {
   })
 
   t.test('using nested or prefixed routers', (t) => {
-    t.beforeEach((done) => testSetup(done))
-    t.afterEach((done) => tearDown(done))
+    t.beforeEach(() => testSetup())
+    t.afterEach(() => tearDown())
     t.autoend()
 
     t.test('should name after most last matched path', (t) => {
@@ -1707,8 +1702,8 @@ tap.test('@koa/router instrumentation', (t) => {
     t.autoend()
 
     t.test('with throw: true', (t) => {
-      t.beforeEach((done) => testSetup(done))
-      t.afterEach((done) => tearDown(done))
+      t.beforeEach(() => testSetup())
+      t.afterEach(() => tearDown())
       t.autoend()
 
       t.test('should name transaction after status `method now allowed` message', (t) => {
@@ -1862,8 +1857,8 @@ tap.test('@koa/router instrumentation', (t) => {
     })
 
     t.test('with throw: false', (t) => {
-      t.beforeEach((done) => testSetup(done))
-      t.afterEach((done) => tearDown(done))
+      t.beforeEach(() => testSetup())
+      t.afterEach(() => tearDown())
       t.autoend()
 
       t.test('should name transaction after status `method now allowed` message', (t) => {
